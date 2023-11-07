@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./app.js" ></script>
+    <style>
+        .bitdiv{
+            text-align: center;
+            margin-top:100px;
+        }
+        .maindv{
+            text-align: center;
+            margin-top: 50px;
+            border: 5px solid black;
+            margin-right: auto;
+            margin-left: auto;
+            width: 600px;
+
+        }
+        .innerdiv{
+            display: grid;
+            grid-template-columns: 200px 200px 200px;
+        }
+        .imgdiv{
+            display: grid;
+            grid-template-columns: 200px 400px;
+        }
+        .divv{
+            padding-top: 30px;
+        }
+        .innerdiv h4{
+            font-size: large;
+            font-weight:500;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+    <div class="bitdiv">
+        <select name="" id="manyoptions">
+            <option value="bitcoin">Bitcoin</option>
+            <option value="ethereum">ethereum</option>
+            <option value="tether">tether</option>
+            <option value="usd-coin">usd-coin</option>
+        </select>
+        <button onclick="callfunc()">search</button>
+    </div>
+                <div class="maindv">
+                    <div class="imgdiv">
+                         <div class="divv">
+                            <img src="" alt="" id="imageid">
+                         </div>
+
+                         <div class="" style="text-align: left; padding-top: 20px; padding-left: 10px;">
+                            <h2 class="hea" id="nameof">
+                                
+                              </h2>
+                              <span style="font-size:xx-large;font-weight: bolder;">      34,450 </span><span style="font-size: x-large;">   USD  </span><span style="font-size: x-large; color: green;">  (0.09%)</span>
+                         </div>
+                    </div>
+ <hr style="margin: 0px;">
+
+                    <div class="innerdiv">
+                        <div class="">
+                            <h3>
+                                RANK
+                            </h3>
+                            <h4 id="rankh1">
+
+                            </h4>
+                        </div>
+                        <div class="">
+                            <h3>
+                               MARKET CAP
+                            </h3>
+                            <h4 id="market"></h4>
+                        </div>
+                        <div class="">
+                            <h3>
+                             VOLUME
+                            </h3>
+                            <h4 id="volume"></h4>
+                        </div>
+
+                    </div>
+                 <hr style="margin: 0px;">   
+            <div style="padding-top: 10px;padding-bottom: 10px;">
+                <a href="">Powered by CoinMarketCap</a>
+            </div>
+                
+                
+            </div>
+    
+        </div>
+    <script>
+         const apiUrl = `https://api.coingecko.com/api/v3/coins/bitcoin`;
+
+
+$.get(apiUrl, function (data) {
+    
+      const eleimg=document.getElementById("imageid")
+      eleimg.src=data.image.small
+      const ele1=document.getElementById("nameof")
+      ele1.textContent=data.name+'('+data.symbol.toUpperCase()+')';
+      const ele2=document.getElementById("rankh1");
+      ele2.textContent= data.market_cap_rank;
+      const ele3=document.getElementById("volume");
+      ele3.textContent='$  '+data.market_data.total_volume.usd+" USD";
+      const ele4=document.getElementById("market");
+      ele4.textContent='$  '+data.market_data.market_cap.usd+' USD' 
+});
+
+    </script>
+</body>
+</html>
